@@ -32,8 +32,8 @@ export default function Footer() {
               <a href="https://twitter.com/" target="_blank" rel="noreferrer" className="text-white hover:text-[#d4af37] transition-all duration-300 hover:-translate-y-1">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
               </a>
-              <a href="https://www.tiktok.com/" target="_blank" rel="noreferrer" className="text-white hover:text-[#d4af37] transition-all duration-300 hover:-translate-y-1 flex items-center justify-center">
-                <svg className="w-[18px] h-[18px]" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
+              <a href="https://www.tiktok.com/" target="_blank" rel="noreferrer" className="text-white hover:text-[#d4af37] transition-all duration-300 hover:-translate-y-1">
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.589 6.686a4.793 4.793 0 0 1-3.97-1.561 4.795 4.795 0 0 1-1.034-3.125h-3.693v13.626a3.692 3.692 0 1 1-6.108-2.795 3.691 3.691 0 0 1 4.887-.14v-4.66a7.382 7.382 0 1 0 4.914 6.963V8.847c1.332.6 2.81 1.01 4.414 1.139v-3.3z"></path></svg>
               </a>
             </div>
           </div>
