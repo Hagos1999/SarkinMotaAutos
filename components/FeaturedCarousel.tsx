@@ -6,29 +6,39 @@ import Autoplay from "embla-carousel-autoplay";
 
 interface FeaturedCarouselProps {
   children: ReactNode[];
-  slidesPerView?: 1 | 2 | 3 | 4 | "auto";
 }
 
-export default function FeaturedCarousel({ children, slidesPerView = "auto" }: FeaturedCarouselProps) {
+export default function FeaturedCarousel({ children }: FeaturedCarouselProps) {
   const [emblaRef, emblaApi] = useEmblaCarousel(
-    { loop: true, align: "start" },
-    [Autoplay({ delay: 4000, stopOnInteraction: false })]
+    {
+      loop: true,
+      align: "start",
+      dragFree: true,
+    },
+    [Autoplay({ delay: 4500, stopOnInteraction: true })]
   );
-  
+
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
+  const [canScrollPrev, setCanScrollPrev] = useState(false);
+  const [canScrollNext, setCanScrollNext] = useState(false);
 
   const scrollTo = useCallback(
     (index: number) => emblaApi && emblaApi.scrollTo(index),
     [emblaApi]
   );
 
-  const onInit = useCallback((emblaApi: any) => {
-    setScrollSnaps(emblaApi.scrollSnapList());
+  const scrollPrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi]);
+  const scrollNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi]);
+
+  const onInit = useCallback((api: any) => {
+    setScrollSnaps(api.scrollSnapList());
   }, []);
 
-  const onSelect = useCallback((emblaApi: any) => {
-    setSelectedIndex(emblaApi.selectedScrollSnap());
+  const onSelect = useCallback((api: any) => {
+    setSelectedIndex(api.selectedScrollSnap());
+    setCanScrollPrev(api.canScrollPrev());
+    setCanScrollNext(api.canScrollNext());
   }, []);
 
   useEffect(() => {
@@ -41,37 +51,100 @@ export default function FeaturedCarousel({ children, slidesPerView = "auto" }: F
   }, [emblaApi, onInit, onSelect]);
 
   return (
-    <div className="relative overflow-hidden group py-6" ref={emblaRef}>
-      <div className="flex touch-pan-y items-stretch" style={{ backfaceVisibility: "hidden" }}>
-        {children.map((child, index) => {
-          let flexClass = "flex-[0_0_auto] min-w-0"; // Default to natural width
-          
-          if (slidesPerView === 1) flexClass = "flex-[0_0_100%] min-w-0";
-          if (slidesPerView === 2) flexClass = "flex-[0_0_100%] sm:flex-[0_0_50%] min-w-0";
-          if (slidesPerView === 3) flexClass = "flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_33.33%] min-w-0";
-          if (slidesPerView === 4) flexClass = "flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_25%] min-w-0";
-
-          return (
-            <div className={`${flexClass} px-2 sm:px-4 h-full`} key={index}>
-              {child}
-            </div>
-          );
-        })}
+    <div className="relative">
+      {/* Viewport */}
+      <div className="overflow-hidden" ref={emblaRef}>
+        <div
+          className="flex"
+          style={{ backfaceVisibility: "hidden" }}
+        >
+          {children}
+        </div>
       </div>
 
-      {/* Pagination Dots */}
-      <div className="flex justify-center gap-2 mt-8">
-        {scrollSnaps.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => scrollTo(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              index === selectedIndex ? "bg-[#1b3b36] scale-110" : "bg-gray-300 hover:bg-gray-400"
-            }`}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
-      </div>
+      {/* Prev / Next arrows */}
+      <button
+        onClick={scrollPrev}
+        aria-label="Previous"
+        style={{
+          position: "absolute",
+          left: "-20px",
+          top: "50%",
+          transform: "translateY(-50%)",
+          zIndex: 10,
+          background: "#fff",
+          border: "1px solid #e5e7eb",
+          borderRadius: "50%",
+          width: 40,
+          height: 40,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          cursor: "pointer",
+          boxShadow: "0 2px 12px rgba(0,0,0,0.12)",
+          transition: "background 0.2s, transform 0.2s",
+          opacity: canScrollPrev ? 1 : 0.3,
+        }}
+        onMouseEnter={e => (e.currentTarget.style.background = "#f3f4f6")}
+        onMouseLeave={e => (e.currentTarget.style.background = "#fff")}
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1b3b36" strokeWidth="2.5" strokeLinecap="round">
+          <path d="M15 18l-6-6 6-6" />
+        </svg>
+      </button>
+
+      <button
+        onClick={scrollNext}
+        aria-label="Next"
+        style={{
+          position: "absolute",
+          right: "-20px",
+          top: "50%",
+          transform: "translateY(-50%)",
+          zIndex: 10,
+          background: "#fff",
+          border: "1px solid #e5e7eb",
+          borderRadius: "50%",
+          width: 40,
+          height: 40,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          cursor: "pointer",
+          boxShadow: "0 2px 12px rgba(0,0,0,0.12)",
+          transition: "background 0.2s",
+          opacity: canScrollNext ? 1 : 0.3,
+        }}
+        onMouseEnter={e => (e.currentTarget.style.background = "#f3f4f6")}
+        onMouseLeave={e => (e.currentTarget.style.background = "#fff")}
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1b3b36" strokeWidth="2.5" strokeLinecap="round">
+          <path d="M9 18l6-6-6-6" />
+        </svg>
+      </button>
+
+      {/* Dot indicators */}
+      {scrollSnaps.length > 1 && (
+        <div className="flex justify-center gap-2 mt-6">
+          {scrollSnaps.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => scrollTo(index)}
+              aria-label={`Go to slide ${index + 1}`}
+              style={{
+                width: index === selectedIndex ? 24 : 8,
+                height: 8,
+                borderRadius: 99,
+                background: index === selectedIndex ? "#1b3b36" : "#d1d5db",
+                border: "none",
+                cursor: "pointer",
+                transition: "all 0.3s",
+                padding: 0,
+              }}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

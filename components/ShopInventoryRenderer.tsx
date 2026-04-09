@@ -54,7 +54,10 @@ export default function ShopInventoryRenderer() {
           <div className="shop-category-tabs-content w-tab-content">
             <div className="shop-category-tabs w-tab-pane w--tab-active">
               <div className="shop-collection-list-wrapper w-dyn-list">
-                <div role="list" className="shop-collection-list grid-four w-dyn-items gap-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                <div
+                  role="list"
+                  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+                >
                   <DynamicVehicleGrid categoryId={activeCategory} />
                 </div>
               </div>

@@ -115,15 +115,8 @@ export default function HtmlPage({ html, vehicle }: HtmlPageProps) {
               return <DynamicVehicleGrid asCarousel={true} />;
             }
             
-            let views: 1 | 2 | 3 | 4 | "auto" = 1;
-            if (classList.includes("shop")) {
-              views = 3;
-            } else {
-              views = "auto";
-            }
-
             return (
-               <FeaturedCarousel slidesPerView={views}>
+               <FeaturedCarousel>
                  {domToReact(slides, options) as React.ReactNode[]}
                </FeaturedCarousel>
             );
