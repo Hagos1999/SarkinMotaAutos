@@ -88,7 +88,7 @@ export default function FeaturedCarousel({ children }: FeaturedCarouselProps) {
         onMouseEnter={e => (e.currentTarget.style.background = "#f3f4f6")}
         onMouseLeave={e => (e.currentTarget.style.background = "#fff")}
       >
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1b3b36" strokeWidth="2.5" strokeLinecap="round">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#d4af37" strokeWidth="2.5" strokeLinecap="round">
           <path d="M15 18l-6-6 6-6" />
         </svg>
       </button>
@@ -118,7 +118,7 @@ export default function FeaturedCarousel({ children }: FeaturedCarouselProps) {
         onMouseEnter={e => (e.currentTarget.style.background = "#f3f4f6")}
         onMouseLeave={e => (e.currentTarget.style.background = "#fff")}
       >
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1b3b36" strokeWidth="2.5" strokeLinecap="round">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#d4af37" strokeWidth="2.5" strokeLinecap="round">
           <path d="M9 18l6-6-6-6" />
         </svg>
       </button>
@@ -135,7 +135,7 @@ export default function FeaturedCarousel({ children }: FeaturedCarouselProps) {
                 width: index === selectedIndex ? 24 : 8,
                 height: 8,
                 borderRadius: 99,
-                background: index === selectedIndex ? "#1b3b36" : "#d1d5db",
+                background: index === selectedIndex ? "#d4af37" : "#d1d5db",
                 border: "none",
                 cursor: "pointer",
                 transition: "all 0.3s",

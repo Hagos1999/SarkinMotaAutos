@@ -38,13 +38,13 @@ export default async function AdminDashboard() {
       <div className="flex items-center justify-end gap-3">
         <Link
           href="/admin/categories"
-          className="border border-[#1b3b36] text-[#1b3b36] px-4 py-2 rounded-lg font-medium hover:bg-[#1b3b36] hover:text-white transition-all text-sm"
+          className="border border-[#d4af37] text-[#d4af37] px-4 py-2 rounded-lg font-medium hover:bg-[#d4af37] hover:text-black transition-all text-sm"
         >
           Manage Categories
         </Link>
         <Link
           href="/admin/vehicles/new"
-          className="bg-[#1b3b36] text-white px-4 py-2 rounded-lg font-medium hover:bg-[#132a26] flex items-center gap-2 text-sm transition-all shadow-sm"
+          className="bg-[#d4af37]-black px-4 py-2 rounded-lg font-medium hover:bg-[#b8860b] flex items-center gap-2 text-sm transition-all shadow-sm"
         >
           <PlusCircle className="w-4 h-4" />
           Add Vehicle

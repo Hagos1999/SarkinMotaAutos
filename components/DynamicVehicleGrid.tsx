@@ -60,7 +60,7 @@ function VehicleCardUI({ car, addItem }: { car: VehicleCard; addItem: (item: any
       <div className="p-5 flex flex-col flex-grow">
         <Link
           href={`/product/${car.slug}`}
-          className="font-bold text-gray-900 text-[15px] leading-snug mb-2 hover:text-[#1b3b36] transition-colors line-clamp-2 block"
+          className="font-bold text-gray-900 text-[15px] leading-snug mb-2 hover:text-[#d4af37] transition-colors line-clamp-2 block"
         >
           {car.title}
         </Link>
@@ -75,7 +75,7 @@ function VehicleCardUI({ car, addItem }: { car: VehicleCard; addItem: (item: any
         </div>
 
         <div className="mt-auto">
-          <div className="text-[#1b3b36] font-extrabold text-xl">
+          <div className="text-[#d4af37] font-extrabold text-xl">
             ₦{Number(car.price).toLocaleString()}
           </div>
           {car.msrp && (
@@ -88,7 +88,7 @@ function VehicleCardUI({ car, addItem }: { car: VehicleCard; addItem: (item: any
         <div className="mt-4 flex gap-2">
           <Link
             href={`/product/${car.slug}`}
-            className="flex-1 text-center py-2.5 rounded-xl text-sm font-semibold bg-[#1b3b36] text-white hover:bg-[#132a26] transition-colors"
+            className="flex-1 text-center py-2.5 rounded-xl text-sm font-semibold bg-[#d4af37]-black hover:bg-[#b8860b] transition-colors"
           >
             View Details
           </Link>
@@ -103,7 +103,7 @@ function VehicleCardUI({ car, addItem }: { car: VehicleCard; addItem: (item: any
                 quantity: 1,
               });
             }}
-            className="px-3 py-2.5 rounded-xl border-2 border-[#1b3b36] text-[#1b3b36] text-sm font-semibold hover:bg-[#1b3b36] hover:text-white transition-all"
+            className="px-3 py-2.5 rounded-xl border-2 border-[#d4af37] text-[#d4af37] text-sm font-semibold hover:bg-[#d4af37] hover:text-black transition-all"
             title="Add to cart"
           >
             +

@@ -54,7 +54,7 @@ export default function PaystackButton({ email, amount = 50000 }: PaystackButton
   return (
     <button
       onClick={handlePay}
-      className="w-full bg-[#1b3b36] hover:bg-[#132a26] text-white py-3 rounded-md font-semibold transition-colors flex justify-center items-center gap-2"
+      className="w-full bg-[#d4af37] hover:bg-[#b8860b] text-white py-3 rounded-md font-semibold transition-colors flex justify-center items-center gap-2"
     >
       <CreditCard className="w-5 h-5" />
       Pay Reservation Deposit

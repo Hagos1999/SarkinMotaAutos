@@ -148,31 +148,31 @@ export default function AddVehiclePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Vehicle Title (Ex: Ampera Helix GT)</label>
-              <input required type="text" value={title} onChange={(e) => setTitle(e.target.value)} className="w-full px-4 py-2 border rounded-md text-gray-900 bg-white focus:ring-2 focus:ring-[#1b3b36]" />
+              <input required type="text" value={title} onChange={(e) => setTitle(e.target.value)} className="w-full px-4 py-2 border rounded-md text-gray-900 bg-white focus:ring-2 focus:ring-[#d4af37]" />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Price (USD)</label>
-              <input required type="number" step="0.01" value={price} onChange={(e) => setPrice(e.target.value)} className="w-full px-4 py-2 border rounded-md text-gray-900 bg-white focus:ring-2 focus:ring-[#1b3b36]" />
+              <input required type="number" step="0.01" value={price} onChange={(e) => setPrice(e.target.value)} className="w-full px-4 py-2 border rounded-md text-gray-900 bg-white focus:ring-2 focus:ring-[#d4af37]" />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Year</label>
-              <input required type="number" value={year} onChange={(e) => setYear(e.target.value)} className="w-full px-4 py-2 border rounded-md text-gray-900 bg-white focus:ring-2 focus:ring-[#1b3b36]" />
+              <input required type="number" value={year} onChange={(e) => setYear(e.target.value)} className="w-full px-4 py-2 border rounded-md text-gray-900 bg-white focus:ring-2 focus:ring-[#d4af37]" />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Mileage</label>
-              <input required type="number" value={mileage} onChange={(e) => setMileage(e.target.value)} className="w-full px-4 py-2 border rounded-md text-gray-900 bg-white focus:ring-2 focus:ring-[#1b3b36]" />
+              <input required type="number" value={mileage} onChange={(e) => setMileage(e.target.value)} className="w-full px-4 py-2 border rounded-md text-gray-900 bg-white focus:ring-2 focus:ring-[#d4af37]" />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Body Style (Ex: Sedan, Coupe)</label>
-              <input required type="text" value={bodyStyle} onChange={(e) => setBodyStyle(e.target.value)} className="w-full px-4 py-2 border rounded-md text-gray-900 bg-white focus:ring-2 focus:ring-[#1b3b36]" />
+              <input required type="text" value={bodyStyle} onChange={(e) => setBodyStyle(e.target.value)} className="w-full px-4 py-2 border rounded-md text-gray-900 bg-white focus:ring-2 focus:ring-[#d4af37]" />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Features (Comma separated)</label>
-              <input type="text" placeholder="Leather, Sunroof, V6" value={features} onChange={(e) => setFeatures(e.target.value)} className="w-full px-4 py-2 border rounded-md text-gray-900 bg-white focus:ring-2 focus:ring-[#1b3b36]" />
+              <input type="text" placeholder="Leather, Sunroof, V6" value={features} onChange={(e) => setFeatures(e.target.value)} className="w-full px-4 py-2 border rounded-md text-gray-900 bg-white focus:ring-2 focus:ring-[#d4af37]" />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
-              <select value={categoryId} onChange={(e) => setCategoryId(e.target.value)} className="w-full px-4 py-2 border rounded-md text-gray-900 bg-white focus:ring-2 focus:ring-[#1b3b36]">
+              <select value={categoryId} onChange={(e) => setCategoryId(e.target.value)} className="w-full px-4 py-2 border rounded-md text-gray-900 bg-white focus:ring-2 focus:ring-[#d4af37]">
                 <option value="">-- No Category --</option>
                 {categories.map((cat) => (
                   <option key={cat.id} value={cat.id}>{cat.name}</option>
@@ -183,7 +183,7 @@ export default function AddVehiclePage() {
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Marketing Description</label>
-            <textarea required rows={4} value={description} onChange={(e) => setDescription(e.target.value)} className="w-full px-4 py-2 border rounded-md text-gray-900 bg-white focus:ring-2 focus:ring-[#1b3b36]" />
+            <textarea required rows={4} value={description} onChange={(e) => setDescription(e.target.value)} className="w-full px-4 py-2 border rounded-md text-gray-900 bg-white focus:ring-2 focus:ring-[#d4af37]" />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -192,7 +192,7 @@ export default function AddVehiclePage() {
               <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 flex flex-col items-center justify-center text-center hover:bg-gray-50 transition-colors cursor-pointer">
                 <Upload className="w-8 h-8 text-gray-400 mb-2" />
                 <label className="relative cursor-pointer">
-                  <span className="text-sm font-medium text-[#1b3b36] hover:text-[#132a26]">Click to upload photo</span>
+                  <span className="text-sm font-medium text-[#d4af37] hover:text-[#b8860b]">Click to upload photo</span>
                   <input required type="file" className="sr-only" accept="image/*" onChange={(e) => setImageFile(e.target.files?.[0] || null)} />
                 </label>
                 <p className="text-xs text-gray-500 mt-1">
@@ -219,7 +219,7 @@ export default function AddVehiclePage() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="bg-[#1b3b36] hover:bg-[#132a26] text-white px-8 py-3 rounded-md font-bold transition-all disabled:opacity-70 flex items-center justify-center gap-2 min-w-[200px]"
+              className="bg-[#d4af37] hover:bg-[#b8860b] text-white px-8 py-3 rounded-md font-bold transition-all disabled:opacity-70 flex items-center justify-center gap-2 min-w-[200px]"
             >
               {isSubmitting ? (
                 <>

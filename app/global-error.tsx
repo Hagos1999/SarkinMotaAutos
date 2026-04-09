@@ -29,7 +29,7 @@ export default function GlobalError({
           </p>
           <button
             onClick={() => reset()}
-            className="px-6 py-3 bg-[#1b3b36] hover:bg-[#132a26] text-white rounded-md font-semibold transition-colors"
+            className="px-6 py-3 bg-[#d4af37] hover:bg-[#b8860b] text-white rounded-md font-semibold transition-colors"
           >
             Reload Platform
           </button>

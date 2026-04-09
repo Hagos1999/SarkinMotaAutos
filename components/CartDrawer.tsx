@@ -129,7 +129,7 @@ export default function CartDrawer() {
               placeholder="Enter your email address"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-[#1b3b36] focus:border-[#1b3b36] mb-2 text-sm"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-[#d4af37] focus:border-[#d4af37] mb-2 text-sm"
             />
 
             <PaystackButton email={email} />

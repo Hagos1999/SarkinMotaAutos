@@ -142,7 +142,7 @@ export default function AdminVehicleList({ initialVehicles }: { initialVehicles:
                     {/* Edit Button */}
                     <Link
                       href={`/admin/vehicles/${vehicle.id}/edit`}
-                      className="inline-flex items-center gap-1.5 text-xs font-medium text-[#1b3b36] bg-[#1b3b36]/10 hover:bg-[#1b3b36] hover:text-white transition-all px-3 py-1.5 rounded-lg"
+                      className="inline-flex items-center gap-1.5 text-xs font-medium text-[#d4af37] bg-[#d4af37]/10 hover:bg-[#d4af37] hover:text-black transition-all px-3 py-1.5 rounded-lg"
                       title="Edit vehicle"
                     >
                       <Pencil className="w-3.5 h-3.5" />

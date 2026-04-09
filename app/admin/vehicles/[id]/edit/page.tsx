@@ -91,7 +91,7 @@ export default function EditVehiclePage({ params }: { params: { id: string } }) 
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
-        <Loader2 className="w-8 h-8 animate-spin text-[#1b3b36]" />
+        <Loader2 className="w-8 h-8 animate-spin text-[#d4af37]" />
       </div>
     );
   }
@@ -132,7 +132,7 @@ export default function EditVehiclePage({ params }: { params: { id: string } }) 
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-[#1b3b36] focus:border-transparent outline-none"
+                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-[#d4af37] focus:border-transparent outline-none"
               />
             </div>
             <div>
@@ -143,7 +143,7 @@ export default function EditVehiclePage({ params }: { params: { id: string } }) 
                 step="0.01"
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
-                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-[#1b3b36] outline-none"
+                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-[#d4af37] outline-none"
               />
             </div>
             <div>
@@ -152,7 +152,7 @@ export default function EditVehiclePage({ params }: { params: { id: string } }) 
                 type="number"
                 value={year}
                 onChange={(e) => setYear(e.target.value)}
-                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-[#1b3b36] outline-none"
+                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-[#d4af37] outline-none"
               />
             </div>
             <div>
@@ -161,7 +161,7 @@ export default function EditVehiclePage({ params }: { params: { id: string } }) 
                 type="text"
                 value={mileage}
                 onChange={(e) => setMileage(e.target.value)}
-                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-[#1b3b36] outline-none"
+                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-[#d4af37] outline-none"
               />
             </div>
             <div>
@@ -171,7 +171,7 @@ export default function EditVehiclePage({ params }: { params: { id: string } }) 
                 value={bodyStyle}
                 onChange={(e) => setBodyStyle(e.target.value)}
                 placeholder="Sedan, SUV, Coupe…"
-                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-[#1b3b36] outline-none"
+                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-[#d4af37] outline-none"
               />
             </div>
             <div>
@@ -179,7 +179,7 @@ export default function EditVehiclePage({ params }: { params: { id: string } }) 
               <select
                 value={categoryId}
                 onChange={(e) => setCategoryId(e.target.value)}
-                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-[#1b3b36] outline-none"
+                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-[#d4af37] outline-none"
               >
                 <option value="">-- No Category --</option>
                 {categories.map((cat) => (
@@ -196,7 +196,7 @@ export default function EditVehiclePage({ params }: { params: { id: string } }) 
               rows={5}
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-[#1b3b36] outline-none resize-none"
+              className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-gray-900 bg-white focus:ring-2 focus:ring-[#d4af37] outline-none resize-none"
             />
           </div>
 
@@ -221,7 +221,7 @@ export default function EditVehiclePage({ params }: { params: { id: string } }) 
               </div>
               <div
                 onClick={() => setIsFeatured(!isFeatured)}
-                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${isFeatured ? "bg-[#1b3b36]" : "bg-gray-200"}`}
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${isFeatured ? "bg-[#d4af37]" : "bg-gray-200"}`}
               >
                 <span className={`inline-block h-4 w-4 transform rounded-full bg-white shadow transition-transform ${isFeatured ? "translate-x-6" : "translate-x-1"}`} />
               </div>
@@ -239,7 +239,7 @@ export default function EditVehiclePage({ params }: { params: { id: string } }) 
             <button
               type="submit"
               disabled={isSubmitting || success}
-              className="bg-[#1b3b36] hover:bg-[#132a26] text-white px-8 py-2.5 rounded-lg font-bold transition-all disabled:opacity-70 flex items-center gap-2"
+              className="bg-[#d4af37] hover:bg-[#b8860b] text-white px-8 py-2.5 rounded-lg font-bold transition-all disabled:opacity-70 flex items-center gap-2"
             >
               {isSubmitting ? (
                 <><Loader2 className="w-4 h-4 animate-spin" /> Saving…</>

@@ -32,7 +32,7 @@ export default function ShopInventoryRenderer() {
             <button
               onClick={() => setActiveCategory("all")}
               className={`sessions-tab-link w-inline-block w-tab-link pb-4 px-6 font-bold text-[15px] whitespace-nowrap transition-colors border-b-2 ${
-                activeCategory === "all" ? "border-[#1b3b36] text-[#1b3b36]" : "border-transparent text-gray-500 hover:text-gray-900"
+                activeCategory === "all" ? "border-[#d4af37] text-[#d4af37]" : "border-transparent text-gray-500 hover:text-gray-900"
               }`}
             >
               All
@@ -42,7 +42,7 @@ export default function ShopInventoryRenderer() {
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
                 className={`sessions-tab-link w-inline-block w-tab-link pb-4 px-6 font-bold text-[15px] whitespace-nowrap transition-colors border-b-2 ${
-                  activeCategory === cat.id ? "border-[#1b3b36] text-[#1b3b36]" : "border-transparent text-gray-500 hover:text-gray-900"
+                  activeCategory === cat.id ? "border-[#d4af37] text-[#d4af37]" : "border-transparent text-gray-500 hover:text-gray-900"
                 }`}
               >
                 {cat.name}

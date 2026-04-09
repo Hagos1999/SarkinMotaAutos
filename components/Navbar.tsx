@@ -185,7 +185,7 @@ export default function Navbar() {
                       }}
                       onMouseEnter={e => {
                         e.currentTarget.style.background = "#f3f4f6";
-                        e.currentTarget.style.color = "#1b3b36";
+                        e.currentTarget.style.color = "#d4af37";
                       }}
                       onMouseLeave={e => {
                         e.currentTarget.style.background = "transparent";
@@ -258,7 +258,7 @@ export default function Navbar() {
                 display: "none",
                 alignItems: "center",
                 background: "#fff",
-                color: "#1b3b36",
+                color: "#d4af37",
                 fontSize: "0.875rem",
                 fontWeight: 700,
                 padding: "8px 18px",
@@ -320,7 +320,7 @@ export default function Navbar() {
           bottom: 0,
           zIndex: 9999,
           width: "min(300px, 85vw)",
-          background: "#0f2520",
+          background: "#0a0a0a",
           display: "flex",
           flexDirection: "column",
           transform: menuOpen ? "translateX(0)" : "translateX(100%)",
@@ -476,7 +476,7 @@ export default function Navbar() {
               width: "100%",
               textAlign: "center",
               background: "#fff",
-              color: "#1b3b36",
+              color: "#d4af37",
               fontWeight: 700,
               fontSize: "0.95rem",
               padding: "14px",

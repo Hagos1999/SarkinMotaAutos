@@ -66,7 +66,7 @@ function getMonthlyData(orders: Order[]) {
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     return (
-      <div className="bg-[#0f2520] border border-[#2a4a44] rounded-lg px-4 py-3 shadow-xl">
+      <div className="bg-[#0a0a0a] border border-[#2a4a44] rounded-lg px-4 py-3 shadow-xl">
         <p className="text-[#a3c4bc] text-xs font-medium mb-1">{label}</p>
         {payload.map((p: any) => (
           <p key={p.name} className="text-white font-bold text-sm">
@@ -133,7 +133,7 @@ export default function AdminDashboardClient({ orders, vehicles, vehicleCount, s
       <div
         className="rounded-2xl p-6 text-white relative overflow-hidden"
         style={{
-          background: "linear-gradient(135deg, #1b3b36 0%, #0f2520 50%, #142e29 100%)",
+          background: "linear-gradient(135deg, #d4af37 0%, #0a0a0a 50%, #141414 100%)",
         }}
       >
         <div className="absolute inset-0 opacity-10"
@@ -193,7 +193,7 @@ export default function AdminDashboardClient({ orders, vehicles, vehicleCount, s
                 <XAxis dataKey="month" tick={{ fontSize: 12, fill: "#9ca3af" }} axisLine={false} tickLine={false} />
                 <YAxis tick={{ fontSize: 11, fill: "#9ca3af" }} axisLine={false} tickLine={false} tickFormatter={(v: number) => `₦${(v / 1000).toFixed(0)}k`} />
                 <Tooltip content={<CustomTooltip />} />
-                <Bar dataKey="revenue" fill="#1b3b36" radius={[6, 6, 0, 0]} />
+                <Bar dataKey="revenue" fill="#d4af37" radius={[6, 6, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           )}
@@ -215,15 +215,15 @@ export default function AdminDashboardClient({ orders, vehicles, vehicleCount, s
               <AreaChart data={monthlyData}>
                 <defs>
                   <linearGradient id="salesGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#1b3b36" stopOpacity={0.2} />
-                    <stop offset="95%" stopColor="#1b3b36" stopOpacity={0} />
+                    <stop offset="5%" stopColor="#d4af37" stopOpacity={0.2} />
+                    <stop offset="95%" stopColor="#d4af37" stopOpacity={0} />
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" vertical={false} />
                 <XAxis dataKey="month" tick={{ fontSize: 12, fill: "#9ca3af" }} axisLine={false} tickLine={false} />
                 <YAxis tick={{ fontSize: 11, fill: "#9ca3af" }} axisLine={false} tickLine={false} allowDecimals={false} />
                 <Tooltip content={<CustomTooltip />} />
-                <Area type="monotone" dataKey="sales" stroke="#1b3b36" strokeWidth={2.5} fill="url(#salesGrad)" dot={{ fill: "#1b3b36", r: 4 }} />
+                <Area type="monotone" dataKey="sales" stroke="#d4af37" strokeWidth={2.5} fill="url(#salesGrad)" dot={{ fill: "#d4af37", r: 4 }} />
               </AreaChart>
             </ResponsiveContainer>
           )}

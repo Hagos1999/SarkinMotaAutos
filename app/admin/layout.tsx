@@ -24,7 +24,7 @@ export default function AdminLayout({
       {/* Sidebar */}
       <aside className="w-full md:w-64 bg-white border-r border-gray-200 flex-shrink-0">
         <div className="h-full flex flex-col px-4 py-6">
-          <div className="flex items-center space-x-2 text-xl font-bold text-[#1b3b36]">
+          <div className="flex items-center space-x-2 text-xl font-bold text-[#d4af37]">
             <span>SarkinMota Admin</span>
           </div>
 

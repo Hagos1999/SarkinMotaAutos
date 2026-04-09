@@ -80,14 +80,14 @@ export default function CategoriesAdminPage() {
               placeholder="e.g. Luxury SUVs"
               value={newCatName}
               onChange={(e) => setNewCatName(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-md text-gray-900 bg-white focus:ring-2 focus:ring-[#1b3b36]"
+              className="w-full px-4 py-2 border border-gray-300 rounded-md text-gray-900 bg-white focus:ring-2 focus:ring-[#d4af37]"
               required
             />
           </div>
           <button 
             type="submit" 
             disabled={isSubmitting}
-            className="bg-[#1b3b36] hover:bg-[#132a26] text-white px-6 py-2 rounded-md font-medium transition-all disabled:opacity-70 flex items-center gap-2 h-[42px]"
+            className="bg-[#d4af37] hover:bg-[#b8860b] text-white px-6 py-2 rounded-md font-medium transition-all disabled:opacity-70 flex items-center gap-2 h-[42px]"
           >
             {isSubmitting ? <Loader2 className="w-5 h-5 animate-spin" /> : <PlusCircle className="w-5 h-5" />}
             Add
