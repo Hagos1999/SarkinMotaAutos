@@ -16,8 +16,8 @@ export default function Footer() {
             />
           </Link>
         </div>
-        <div className="footer-wrapper flex flex-col md:flex-row justify-between w-full">
-          <div className="footer-brand-wrapper md:w-1/4">
+        <div className="footer-wrapper">
+          <div className="footer-brand-wrapper">
             <a href="https://www.google.com/maps" className="footer-contact-elements w-inline-block">
               <MapPin className="w-5 h-5 text-white mr-2 flex-shrink-0" />
               <div>2715 Ash Dr. San Jose, South Dakota 83475</div>
@@ -39,7 +39,7 @@ export default function Footer() {
             </div>
           </div>
           
-          <div className="footer-links-wrapper md:w-1/4">
+          <div className="footer-links-wrapper">
             <h6 className="footer-title">Inventory</h6>
             <div className="flex flex-col gap-2 mt-4">
               <Link href="/shop" className="footer-link">All Vehicles</Link>
@@ -49,7 +49,7 @@ export default function Footer() {
             </div>
           </div>
           
-          <div className="footer-links-wrapper md:w-1/4">
+          <div className="footer-links-wrapper">
             <h6 className="footer-title">Company</h6>
             <div className="flex flex-col gap-2 mt-4">
               <Link href="/about-us" className="footer-link">About us</Link>
@@ -58,18 +58,9 @@ export default function Footer() {
               <Link href="/contact-us" className="footer-link">Contact us</Link>
             </div>
           </div>
-
-          <div className="hidden lg:flex md:w-1/4 items-center justify-end opacity-20 hover:opacity-100 transition-opacity duration-500">
-             <img
-              src="/SarkinMotaLogolight.webp"
-              loading="lazy"
-              alt="SarkinMota Autos Logo Watermark"
-              className="w-full max-w-[200px] h-auto object-contain drop-shadow-2xl"
-            />
-          </div>
         </div>
         
-        <div className="footer-bottom-wrapper mt-8 pt-6 border-t border-gray-800">
+        <div className="footer-bottom-wrapper">
           <div className="footer-copyright">
             © {new Date().getFullYear()} Sarkin Mota Autos. All Rights Reserved.
           </div>
