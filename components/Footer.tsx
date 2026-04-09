@@ -63,14 +63,14 @@ export default function Footer() {
           </div>
 
           {/* Column 4: Big Logo (Aligned fully right, spans 5 cols to take massive empty space) */}
-          <div className="lg:col-span-5 flex items-center justify-center lg:justify-end mt-8 md:mt-0 pt-6 lg:pt-0 border-t border-[#1a1a1a] lg:border-t-0">
+          <div className="lg:col-span-5 flex items-center justify-center mt-8 md:mt-0 pt-6 lg:pt-0 border-t border-[#1a1a1a] lg:border-t-0">
             <Link href="/" className="inline-block opacity-90 hover:opacity-100 transition-opacity duration-500 hover:scale-[1.02]">
               {/* Massive Logo Implementation per User Request - Scaled via fixed exact widths */}
               <img
                 src="/SarkinMotaLogolight.webp"
                 loading="lazy"
                 alt="SarkinMota Autos Logo"
-                className="w-[180px] sm:w-[200px] lg:w-[240px] xl:w-[260px] h-auto object-contain drop-shadow-[0_10px_30px_rgba(212,175,55,0.12)]"
+                className="w-[200px] sm:w-[220px] lg:w-[265px] xl:w-[285px] h-auto object-contain drop-shadow-[0_10px_30px_rgba(212,175,55,0.12)]"
               />
             </Link>
           </div>
