@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import { ShoppingCart, Menu, X, ChevronDown, Search } from "lucide-react";
 import { useCartStore } from "@/store/cartStore";
@@ -24,6 +23,7 @@ const WHO_WE_ARE = [
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [mounted, setMounted] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -38,7 +38,6 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close dropdown on outside click
   useEffect(() => {
     const handler = (e: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
@@ -49,7 +48,6 @@ export default function Navbar() {
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
-  // Lock body scroll when menu is open
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
@@ -58,60 +56,141 @@ export default function Navbar() {
   const closeAll = () => {
     setMenuOpen(false);
     setDropdownOpen(false);
+    setMobileDropdownOpen(false);
   };
 
   return (
     <>
-      {/* ── NAVBAR BAR ── */}
+      {/* ── FIXED NAVBAR BAR ── */}
       <header
-        className={`fixed top-0 left-0 right-0 z-[999] transition-all duration-300 ${
-          scrolled
-            ? "bg-[#0f2520]/95 backdrop-blur-md shadow-lg"
-            : "bg-transparent"
-        }`}
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 9999,
+          height: "64px",
+          display: "flex",
+          alignItems: "center",
+          transition: "background 0.3s, box-shadow 0.3s",
+          background: scrolled ? "rgba(15,37,32,0.97)" : "transparent",
+          backdropFilter: scrolled ? "blur(10px)" : "none",
+          boxShadow: scrolled ? "0 2px 20px rgba(0,0,0,0.3)" : "none",
+        }}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-
+        <div
+          style={{
+            width: "100%",
+            maxWidth: "1280px",
+            margin: "0 auto",
+            padding: "0 1.25rem",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: "1rem",
+          }}
+        >
           {/* Logo */}
-          <Link href="/" onClick={closeAll} className="flex-shrink-0 z-10">
+          <Link href="/" onClick={closeAll} style={{ flexShrink: 0, display: "flex", alignItems: "center" }}>
             <img
               src="/sarkinmota_logo_dark.svg"
               alt="SarkinMota Autos"
-              className="h-8 w-auto"
+              style={{ height: "32px", width: "auto" }}
             />
           </Link>
 
           {/* ── Desktop Nav ── */}
-          <nav className="hidden lg:flex items-center gap-6">
+          <nav
+            style={{
+              display: "none",
+              alignItems: "center",
+              gap: "1.75rem",
+            }}
+            className="lg-nav-show"
+          >
             {NAV_LINKS.map((l) => (
               <Link
                 key={l.href}
                 href={l.href}
-                className="text-white/90 hover:text-white text-sm font-medium transition-colors"
+                style={{
+                  color: "rgba(255,255,255,0.9)",
+                  fontSize: "0.875rem",
+                  fontWeight: 500,
+                  textDecoration: "none",
+                  transition: "color 0.2s",
+                }}
+                onMouseEnter={e => (e.currentTarget.style.color = "#fff")}
+                onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.9)")}
               >
                 {l.label}
               </Link>
             ))}
 
             {/* Who We Are Dropdown */}
-            <div className="relative" ref={dropdownRef}>
+            <div style={{ position: "relative" }} ref={dropdownRef}>
               <button
                 onClick={() => setDropdownOpen(!dropdownOpen)}
-                className="flex items-center gap-1 text-white/90 hover:text-white text-sm font-medium transition-colors"
+                style={{
+                  background: "none",
+                  border: "none",
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "4px",
+                  color: "rgba(255,255,255,0.9)",
+                  fontSize: "0.875rem",
+                  fontWeight: 500,
+                  padding: 0,
+                }}
               >
                 Who We Are
                 <ChevronDown
-                  className={`w-4 h-4 transition-transform duration-200 ${dropdownOpen ? "rotate-180" : ""}`}
+                  style={{
+                    width: 16,
+                    height: 16,
+                    transition: "transform 0.2s",
+                    transform: dropdownOpen ? "rotate(180deg)" : "none",
+                  }}
                 />
               </button>
               {dropdownOpen && (
-                <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-xl shadow-xl py-2 border border-gray-100 z-50">
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "calc(100% + 8px)",
+                    left: 0,
+                    minWidth: "180px",
+                    background: "#fff",
+                    borderRadius: "12px",
+                    boxShadow: "0 8px 30px rgba(0,0,0,0.12)",
+                    padding: "6px",
+                    zIndex: 10000,
+                    border: "1px solid rgba(0,0,0,0.06)",
+                  }}
+                >
                   {WHO_WE_ARE.map((l) => (
                     <Link
                       key={l.href}
                       href={l.href}
                       onClick={closeAll}
-                      className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-[#1b3b36] transition-colors"
+                      style={{
+                        display: "block",
+                        padding: "10px 14px",
+                        fontSize: "0.875rem",
+                        color: "#374151",
+                        textDecoration: "none",
+                        borderRadius: "8px",
+                        transition: "background 0.15s",
+                        fontWeight: 500,
+                      }}
+                      onMouseEnter={e => {
+                        e.currentTarget.style.background = "#f3f4f6";
+                        e.currentTarget.style.color = "#1b3b36";
+                      }}
+                      onMouseLeave={e => {
+                        e.currentTarget.style.background = "transparent";
+                        e.currentTarget.style.color = "#374151";
+                      }}
                     >
                       {l.label}
                     </Link>
@@ -122,30 +201,72 @@ export default function Navbar() {
           </nav>
 
           {/* ── Right Actions ── */}
-          <div className="flex items-center gap-3">
+          <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
             {/* Search */}
-            <Link href="/search" className="p-2 text-white hover:text-white/80 transition-colors">
-              <Search className="w-5 h-5" />
+            <Link
+              href="/search"
+              style={{ color: "#fff", padding: "8px", display: "flex", alignItems: "center" }}
+            >
+              <Search style={{ width: 20, height: 20 }} />
             </Link>
 
             {/* Cart */}
             <button
               onClick={openCart}
-              className="relative p-2 text-white hover:text-white/80 transition-colors"
+              style={{
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                color: "#fff",
+                padding: "8px",
+                display: "flex",
+                alignItems: "center",
+                position: "relative",
+              }}
               aria-label="Open cart"
             >
-              <ShoppingCart className="w-5 h-5" />
+              <ShoppingCart style={{ width: 20, height: 20 }} />
               {mounted && totalItems > 0 && (
-                <span className="absolute -top-0.5 -right-0.5 bg-red-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                <span
+                  style={{
+                    position: "absolute",
+                    top: 2,
+                    right: 2,
+                    background: "#ef4444",
+                    color: "#fff",
+                    fontSize: "10px",
+                    fontWeight: 700,
+                    width: 16,
+                    height: 16,
+                    borderRadius: "50%",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    lineHeight: 1,
+                  }}
+                >
                   {totalItems}
                 </span>
               )}
             </button>
 
-            {/* Desktop CTA */}
+            {/* Desktop CTA — hidden on mobile */}
             <Link
               href="/shop"
-              className="hidden lg:inline-flex items-center bg-white text-[#1b3b36] hover:bg-white/90 text-sm font-bold px-4 py-2 rounded-lg transition-all shadow-sm"
+              className="desktop-cta-btn"
+              style={{
+                display: "none",
+                alignItems: "center",
+                background: "#fff",
+                color: "#1b3b36",
+                fontSize: "0.875rem",
+                fontWeight: 700,
+                padding: "8px 18px",
+                borderRadius: "8px",
+                textDecoration: "none",
+                whiteSpace: "nowrap",
+                transition: "opacity 0.2s",
+              }}
             >
               Explore Vehicles
             </Link>
@@ -153,46 +274,113 @@ export default function Navbar() {
             {/* Hamburger — mobile only */}
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="lg:hidden p-2 text-white transition-colors"
+              className="hamburger-btn"
+              style={{
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                color: "#fff",
+                padding: "8px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
               aria-label={menuOpen ? "Close menu" : "Open menu"}
             >
-              {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {menuOpen
+                ? <X style={{ width: 24, height: 24 }} />
+                : <Menu style={{ width: 24, height: 24 }} />
+              }
             </button>
           </div>
         </div>
       </header>
 
-      {/* ── MOBILE DRAWER ── */}
-      {/* Backdrop */}
+      {/* ── MOBILE DRAWER BACKDROP ── */}
       <div
-        className={`fixed inset-0 z-[998] bg-black/60 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${
-          menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-        }`}
         onClick={closeAll}
+        style={{
+          position: "fixed",
+          inset: 0,
+          zIndex: 9998,
+          background: "rgba(0,0,0,0.55)",
+          backdropFilter: "blur(4px)",
+          opacity: menuOpen ? 1 : 0,
+          pointerEvents: menuOpen ? "auto" : "none",
+          transition: "opacity 0.3s",
+        }}
       />
 
-      {/* Slide-in panel */}
+      {/* ── MOBILE DRAWER PANEL ── */}
       <div
-        className={`fixed top-0 right-0 bottom-0 z-[999] w-[280px] bg-[#0f2520] flex flex-col transition-transform duration-300 ease-in-out lg:hidden ${
-          menuOpen ? "translate-x-0" : "translate-x-full"
-        }`}
+        style={{
+          position: "fixed",
+          top: 0,
+          right: 0,
+          bottom: 0,
+          zIndex: 9999,
+          width: "min(300px, 85vw)",
+          background: "#0f2520",
+          display: "flex",
+          flexDirection: "column",
+          transform: menuOpen ? "translateX(0)" : "translateX(100%)",
+          transition: "transform 0.3s cubic-bezier(0.4,0,0.2,1)",
+          overflowY: "auto",
+        }}
       >
-        {/* Panel header */}
-        <div className="flex items-center justify-between px-5 h-16 border-b border-white/10">
-          <img src="/sarkinmota_logo_dark.svg" alt="SarkinMota" className="h-7 w-auto" />
-          <button onClick={closeAll} className="p-2 text-white/70 hover:text-white">
-            <X className="w-5 h-5" />
+        {/* Drawer header */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            padding: "0 1.25rem",
+            height: "64px",
+            borderBottom: "1px solid rgba(255,255,255,0.1)",
+            flexShrink: 0,
+          }}
+        >
+          <img src="/sarkinmota_logo_dark.svg" alt="SarkinMota" style={{ height: "28px" }} />
+          <button
+            onClick={closeAll}
+            style={{
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              color: "rgba(255,255,255,0.7)",
+              padding: "6px",
+              display: "flex",
+            }}
+          >
+            <X style={{ width: 20, height: 20 }} />
           </button>
         </div>
 
-        {/* Nav links */}
-        <nav className="flex-1 overflow-y-auto py-6 px-5 flex flex-col gap-1">
+        {/* Drawer nav links */}
+        <nav style={{ flex: 1, padding: "1.5rem 1rem", display: "flex", flexDirection: "column", gap: "4px" }}>
           {NAV_LINKS.map((l) => (
             <Link
               key={l.href}
               href={l.href}
               onClick={closeAll}
-              className="text-white/80 hover:text-white hover:bg-white/10 px-3 py-3 rounded-lg text-base font-medium transition-all"
+              style={{
+                display: "block",
+                color: "rgba(255,255,255,0.85)",
+                fontSize: "1rem",
+                fontWeight: 500,
+                padding: "12px 14px",
+                borderRadius: "10px",
+                textDecoration: "none",
+                transition: "background 0.15s, color 0.15s",
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.background = "rgba(255,255,255,0.1)";
+                e.currentTarget.style.color = "#fff";
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.background = "transparent";
+                e.currentTarget.style.color = "rgba(255,255,255,0.85)";
+              }}
             >
               {l.label}
             </Link>
@@ -200,22 +388,70 @@ export default function Navbar() {
 
           {/* Who We Are accordion */}
           <button
-            onClick={() => setDropdownOpen(!dropdownOpen)}
-            className="flex items-center justify-between text-white/80 hover:text-white hover:bg-white/10 px-3 py-3 rounded-lg text-base font-medium transition-all w-full text-left"
+            onClick={() => setMobileDropdownOpen(!mobileDropdownOpen)}
+            style={{
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              width: "100%",
+              textAlign: "left",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              color: "rgba(255,255,255,0.85)",
+              fontSize: "1rem",
+              fontWeight: 500,
+              padding: "12px 14px",
+              borderRadius: "10px",
+              transition: "background 0.15s",
+            }}
           >
-            Who We Are
+            <span>Who We Are</span>
             <ChevronDown
-              className={`w-4 h-4 transition-transform duration-200 ${dropdownOpen ? "rotate-180" : ""}`}
+              style={{
+                width: 16,
+                height: 16,
+                color: "rgba(255,255,255,0.6)",
+                transition: "transform 0.2s",
+                transform: mobileDropdownOpen ? "rotate(180deg)" : "none",
+              }}
             />
           </button>
-          {dropdownOpen && (
-            <div className="ml-3 border-l border-white/20 pl-4 flex flex-col gap-1">
+
+          {mobileDropdownOpen && (
+            <div
+              style={{
+                marginLeft: "14px",
+                paddingLeft: "14px",
+                borderLeft: "2px solid rgba(255,255,255,0.15)",
+                display: "flex",
+                flexDirection: "column",
+                gap: "2px",
+              }}
+            >
               {WHO_WE_ARE.map((l) => (
                 <Link
                   key={l.href}
                   href={l.href}
                   onClick={closeAll}
-                  className="text-white/70 hover:text-white py-2 text-sm transition-colors"
+                  style={{
+                    display: "block",
+                    color: "rgba(255,255,255,0.65)",
+                    fontSize: "0.9rem",
+                    fontWeight: 400,
+                    padding: "10px 12px",
+                    borderRadius: "8px",
+                    textDecoration: "none",
+                    transition: "color 0.15s, background 0.15s",
+                  }}
+                  onMouseEnter={e => {
+                    e.currentTarget.style.color = "#fff";
+                    e.currentTarget.style.background = "rgba(255,255,255,0.08)";
+                  }}
+                  onMouseLeave={e => {
+                    e.currentTarget.style.color = "rgba(255,255,255,0.65)";
+                    e.currentTarget.style.background = "transparent";
+                  }}
                 >
                   {l.label}
                 </Link>
@@ -224,17 +460,50 @@ export default function Navbar() {
           )}
         </nav>
 
-        {/* Bottom CTA */}
-        <div className="p-5 border-t border-white/10">
+        {/* Drawer bottom CTA */}
+        <div
+          style={{
+            padding: "1.25rem",
+            borderTop: "1px solid rgba(255,255,255,0.1)",
+            flexShrink: 0,
+          }}
+        >
           <Link
             href="/shop"
             onClick={closeAll}
-            className="block w-full text-center bg-white text-[#1b3b36] font-bold py-3 rounded-xl text-sm hover:bg-white/90 transition-all"
+            style={{
+              display: "block",
+              width: "100%",
+              textAlign: "center",
+              background: "#fff",
+              color: "#1b3b36",
+              fontWeight: 700,
+              fontSize: "0.95rem",
+              padding: "14px",
+              borderRadius: "12px",
+              textDecoration: "none",
+              transition: "opacity 0.2s",
+              boxSizing: "border-box",
+            }}
           >
             🚗 Explore Vehicles
           </Link>
         </div>
       </div>
+
+      {/* Responsive style injection — avoids Webflow CSS conflicts */}
+      <style>{`
+        @media (min-width: 1024px) {
+          .hamburger-btn { display: none !important; }
+          .lg-nav-show { display: flex !important; }
+          .desktop-cta-btn { display: inline-flex !important; }
+        }
+        @media (max-width: 1023px) {
+          .hamburger-btn { display: flex !important; }
+          .lg-nav-show { display: none !important; }
+          .desktop-cta-btn { display: none !important; }
+        }
+      `}</style>
     </>
   );
 }
