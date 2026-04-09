@@ -123,13 +123,22 @@ export default function HtmlPage({ html, vehicle }: HtmlPageProps) {
           }
         }
 
-        // --- 5. Inject Dynamic Supabase Inventory ---
+        // --- 5a. Replace homepage/shop "featured" static cars (collection-list-home) ---
         if (
-          classList.includes("shop-collection-list") && 
+          classList.includes("collection-list-home") &&
+          classList.includes("w-dyn-items")
+        ) {
+          // Return nothing — the real vehicles section below (ShopInventoryRenderer) handles this
+          return <></>;
+        }
+
+        // --- 5b. Inject Dynamic Supabase Inventory (main shop grid) ---
+        if (
+          classList.includes("shop-collection-list") &&
           classList.includes("w-dyn-items")
         ) {
           return (
-            <div className={classList}>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full">
               <DynamicVehicleGrid />
             </div>
           );

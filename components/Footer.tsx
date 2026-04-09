@@ -8,9 +8,9 @@ export default function Footer() {
         <div className="footer-top-wrapper">
           <Link href="/" className="footer-brand w-nav-brand">
             <img
-              src="/sarkinmota_logo_light.webp"
+              src="/SarkinMotaLogolight.webp"
               loading="lazy"
-              alt="SarkinMota Autos Logo White"
+              alt="SarkinMota Autos Logo"
               height="30"
               className="footer-logo h-[30px] object-contain"
             />
