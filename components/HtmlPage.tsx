@@ -7,6 +7,7 @@ import { useCartStore } from "@/store/cartStore";
 import FeaturedCarousel from "./FeaturedCarousel";
 import DynamicVehicleGrid from "./DynamicVehicleGrid";
 import ShopInventoryRenderer from "./ShopInventoryRenderer";
+import ModelViewer from "./ModelViewer";
 
 interface HtmlPageProps {
   html: string;
@@ -48,27 +49,11 @@ export default function HtmlPage({ html, vehicle }: HtmlPageProps) {
                   className="w-full h-auto aspect-video rounded-xl shadow-md object-cover"
                   alt={vehicle.title}
                 />
-                
-                {/* 3D Model Viewer */}
-                <div className="w-full h-[560px] bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl shadow-inner border border-gray-700 overflow-hidden relative">
-                  {isPlaceholder && (
-                    <div className="absolute top-3 left-3 z-10 bg-black/50 text-white/70 text-xs px-3 py-1.5 rounded-full backdrop-blur-sm">
-                      🔲 3D Model: Demo Mode — Admin can upload a real .glb file
-                    </div>
-                  )}
-                  {/* @ts-ignore - Custom Web Component */}
-                  <model-viewer 
-                    src={modelSrc}
-                    alt={`3D model of ${vehicle.title}`}
-                    auto-rotate 
-                    camera-controls
-                    shadow-intensity="1.5"
-                    environment-image="neutral"
-                    exposure="1"
-                    style={{ width: '100%', height: '100%', backgroundColor: 'transparent' }}
-                  >
-                  </model-viewer>
-                </div>
+                <ModelViewer
+                  src={modelSrc}
+                  alt={`3D model of ${vehicle.title}`}
+                  isPlaceholder={isPlaceholder}
+                />
               </div>
             );
           }
