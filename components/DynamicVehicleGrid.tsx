@@ -59,61 +59,63 @@ export default function DynamicVehicleGrid({ asCarousel = false, categoryId = nu
   }
 
   const cards = vehicles.map((car) => (
-    <div key={car.id} role="listitem" className="w-dyn-item h-full">
-      <div className="main-shop-list-item home bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow h-full flex flex-col mx-2">
-        
-        <div className="shop-links-wrapper relative bg-gray-100 overflow-hidden" style={{ aspectRatio: '16/9' }}>
-          <Link href={`/product/${car.slug}`} className="shop-link-block w-inline-block block w-full h-full">
-            <img 
-              loading="lazy" 
-              src={car.main_image_url || car.images?.[0] || "/sarkinmota_logo_dark.svg"} 
-              alt={car.title} 
-              className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-            />
-          </Link>
+    <div
+      key={car.id}
+      className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow flex flex-col w-full"
+    >
+      {/* Image */}
+      <div className="relative bg-gray-100 overflow-hidden w-full" style={{ aspectRatio: "16/9" }}>
+        <Link href={`/product/${car.slug}`} className="block w-full h-full">
+          <img
+            loading="lazy"
+            src={car.main_image_url || car.images?.[0] || "/sarkinmota_logo_dark.svg"}
+            alt={car.title}
+            className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+          />
+        </Link>
+      </div>
+
+      {/* Info */}
+      <div className="p-4 flex flex-col flex-grow">
+        <Link
+          href={`/product/${car.slug}`}
+          className="text-base font-bold text-gray-900 mb-1 hover:text-[#1b3b36] line-clamp-2"
+        >
+          {car.title}
+        </Link>
+
+        <div className="flex gap-3 text-xs text-gray-500 mb-3">
+          {car.year && <span>{car.year}</span>}
+          {car.mileage && <span>{car.mileage.toLocaleString()} mi</span>}
         </div>
-        
-        <div className="p-6 flex flex-col flex-grow">
-          <div className="mb-4">
-            <Link href={`/product/${car.slug}`} className="shop-item-link text-xl font-bold text-gray-900 block mb-2 hover:text-[#1b3b36]">
-              {car.title}
-            </Link>
-            <div className="shop-price-wrapper home-style flex flex-col gap-1">
-              <div className="shop-item-price home text-[#1b3b36] font-bold text-lg">
-                $ {Number(car.price).toLocaleString()} USD
-              </div>
-              {car.msrp && (
-                <div className="shop-item-price home text-gray-500 text-sm line-through">
-                  MSRP: ${Number(car.msrp).toLocaleString()}
-                </div>
-              )}
+
+        <div className="mt-auto">
+          <div className="text-[#1b3b36] font-bold text-lg">
+            ₦{Number(car.price).toLocaleString()}
+          </div>
+          {car.msrp && (
+            <div className="text-gray-400 text-sm line-through">
+              MSRP: ₦{Number(car.msrp).toLocaleString()}
             </div>
-          </div>
+          )}
+        </div>
 
-          {/* Specs */}
-          <div className="flex gap-4 text-xs text-gray-600 mb-6 font-medium">
-            {car.year && <div>Year: {car.year}</div>}
-            {car.mileage && <div>{car.mileage.toLocaleString()} mi</div>}
-          </div>
-
-          <div className="add-to-cart mt-auto pt-4 border-t border-gray-100">
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                addItem({
-                  id: car.slug,
-                  title: car.title,
-                  price: `$ ${Number(car.price).toLocaleString()} USD`,
-                  image: car.main_image_url || car.images?.[0] || "https://cdn.prod.website-files.com/63f482d5d15815d700cb1c76/64132a98932dbe1acc55146c_Car%20dealershipw.svg",
-                  quantity: 1
-                });
-              }}
-              className="w-commerce-commerceaddtocartbutton primary-button outline-dark w-full py-3 rounded text-center text-sm font-semibold hover:bg-[#1b3b36] hover:text-white transition-colors"
-            >
-              Add to Cart
-            </button>
-          </div>
-
+        <div className="mt-3 pt-3 border-t border-gray-100">
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              addItem({
+                id: car.slug,
+                title: car.title,
+                price: `₦${Number(car.price).toLocaleString()}`,
+                image: car.main_image_url || car.images?.[0] || "/sarkinmota_logo_dark.svg",
+                quantity: 1,
+              });
+            }}
+            className="w-full py-2.5 rounded-lg border-2 border-[#1b3b36] text-[#1b3b36] text-sm font-semibold hover:bg-[#1b3b36] hover:text-white transition-all"
+          >
+            Add to Cart
+          </button>
         </div>
       </div>
     </div>
@@ -123,5 +125,9 @@ export default function DynamicVehicleGrid({ asCarousel = false, categoryId = nu
     return <FeaturedCarousel slidesPerView={1}>{cards}</FeaturedCarousel>;
   }
 
-  return <>{cards}</>;
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
+      {cards}
+    </div>
+  );
 }
