@@ -93,7 +93,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" onClick={closeAll} style={{ flexShrink: 0, display: "flex", alignItems: "center" }}>
             <img
-              src="/sarkinmota_logo_dark.svg"
+              src="/SarkinMotaLogolight.webp"
               alt="SarkinMota Autos"
               style={{ height: "32px", width: "auto" }}
             />
