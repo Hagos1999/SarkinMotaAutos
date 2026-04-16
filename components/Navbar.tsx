@@ -160,12 +160,12 @@ export default function Navbar() {
                     top: "calc(100% + 8px)",
                     left: 0,
                     minWidth: "180px",
-                    background: "#fff",
+                    background: "#121416",
                     borderRadius: "12px",
-                    boxShadow: "0 8px 30px rgba(0,0,0,0.12)",
+                    boxShadow: "0 8px 30px rgba(0,0,0,0.4)",
                     padding: "6px",
                     zIndex: 10000,
-                    border: "1px solid rgba(0,0,0,0.06)",
+                    border: "1px solid rgba(198, 146, 71, 0.2)",
                   }}
                 >
                   {WHO_WE_ARE.map((l) => (
@@ -177,19 +177,19 @@ export default function Navbar() {
                         display: "block",
                         padding: "10px 14px",
                         fontSize: "0.875rem",
-                        color: "#374151",
+                        color: "#E5E7EB",
                         textDecoration: "none",
                         borderRadius: "8px",
-                        transition: "background 0.15s",
+                        transition: "background 0.15s, color 0.15s",
                         fontWeight: 500,
                       }}
                       onMouseEnter={e => {
-                        e.currentTarget.style.background = "#f3f4f6";
+                        e.currentTarget.style.background = "rgba(198, 146, 71, 0.1)";
                         e.currentTarget.style.color = "#d4af37";
                       }}
                       onMouseLeave={e => {
                         e.currentTarget.style.background = "transparent";
-                        e.currentTarget.style.color = "#374151";
+                        e.currentTarget.style.color = "#E5E7EB";
                       }}
                     >
                       {l.label}
@@ -257,8 +257,8 @@ export default function Navbar() {
               style={{
                 display: "none",
                 alignItems: "center",
-                background: "#fff",
-                color: "#d4af37",
+                background: "#c69247",
+                color: "#000",
                 fontSize: "0.875rem",
                 fontWeight: 700,
                 padding: "8px 18px",

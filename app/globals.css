@@ -1,8 +1,63 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #080A0B;
+  --foreground: #F5F5F5;
+}
+
+body {
+  background-color: var(--background) !important;
+  color: var(--foreground) !important;
+}
+
+/* Force dark mode text colors on legacy Webflow components */
+h1, h2, h3, h4, h5, h6, p, a,
+.section-subtitle, .service-cars-heading, .banner-display-text,
+.service-card-paragraph, .home-graphic-text h2, .home-graphic-text p,
+.testimonial-quote, .testimonial-author, .car-title, .price-car {
+  color: var(--foreground) !important;
+}
+
+/* Force dark backgrounds on components */
+.service-card, 
+.home-testimonials-slide, 
+.home-testimonials-card, 
+.home-testimonials-author,
+.car-item-style, 
+.main-shop-list-item,
+.card-wrapper-small,
+.shop-link-block,
+.collection-item-home {
+  background-color: #121416 !important;
+  border: 1px solid rgba(198, 146, 71, 0.15) !important; /* Subtle gold border */
+  border-radius: 12px;
+}
+
+/* Fix for testimonials specifically */
+.home-testimonials-slide, .home-testimonials-card {
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4) !important;
+}
+
+.testimonial-quote, .home-testimonials-author {
+  font-style: italic;
+  opacity: 0.9;
+  color: var(--foreground) !important;
+}
+
+/* Navbar dropdown fixes */
+.w-dropdown-list {
+  background-color: #0d0f11 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.w-dropdown-link {
+  color: var(--foreground) !important;
+}
+
+.w-dropdown-link:hover {
+  background-color: rgba(198, 146, 71, 0.1) !important;
+  color: #c69247 !important;
 }
 
 @theme inline {

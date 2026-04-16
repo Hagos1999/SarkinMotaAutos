@@ -23,7 +23,7 @@ function VehicleCardUI({ car, addItem }: { car: VehicleCard; addItem: (item: any
   const image = car.main_image_url || car.images?.[0] || "/SarkinMotaLogolight.webp";
 
   return (
-    <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300 flex flex-col h-full group">
+    <div className="bg-[#121416] rounded-2xl overflow-hidden shadow-sm border border-white/10 hover:shadow-[0_0_30px_rgba(198,146,71,0.1)] transition-all duration-300 flex flex-col h-full group">
       {/* Image */}
       <div className="relative overflow-hidden bg-gray-100" style={{ aspectRatio: "16/9" }}>
         {car.is_sold && (
@@ -60,15 +60,15 @@ function VehicleCardUI({ car, addItem }: { car: VehicleCard; addItem: (item: any
       <div className="p-5 flex flex-col flex-grow">
         <Link
           href={`/product/${car.slug}`}
-          className="font-bold text-gray-900 text-[15px] leading-snug mb-2 hover:text-[#d4af37] transition-colors line-clamp-2 block"
+          className="font-bold text-white text-[15px] leading-snug mb-2 hover:text-[#d4af37] transition-colors line-clamp-2 block"
         >
           {car.title}
         </Link>
 
         <div className="flex items-center gap-2 text-xs text-gray-400 mb-4">
-          {car.year && <span className="bg-gray-100 px-2 py-1 rounded-md">{car.year}</span>}
+          {car.year && <span className="bg-white/5 px-2 py-1 rounded-md">{car.year}</span>}
           {car.mileage && (
-            <span className="bg-gray-100 px-2 py-1 rounded-md">
+            <span className="bg-white/5 px-2 py-1 rounded-md">
               {Number(car.mileage).toLocaleString()} mi
             </span>
           )}
@@ -88,7 +88,8 @@ function VehicleCardUI({ car, addItem }: { car: VehicleCard; addItem: (item: any
         <div className="mt-4 flex gap-2">
           <Link
             href={`/product/${car.slug}`}
-            className="flex-1 text-center py-2.5 rounded-xl text-sm font-semibold bg-[#d4af37]-black hover:bg-[#b8860b] transition-colors"
+            className="flex-1 text-center py-2.5 rounded-xl text-sm font-semibold hover:opacity-90 transition-all shadow-sm"
+            style={{ backgroundColor: "#d4af37", color: "#000 !important" }}
           >
             View Details
           </Link>
@@ -117,13 +118,13 @@ function VehicleCardUI({ car, addItem }: { car: VehicleCard; addItem: (item: any
 // ─── Loading Skeleton ─────────────────────────────────────────────────────────
 function CardSkeleton() {
   return (
-    <div className="bg-white rounded-2xl overflow-hidden border border-gray-100 animate-pulse">
-      <div className="bg-gray-200" style={{ aspectRatio: "16/9" }} />
+    <div className="bg-[#121416] rounded-2xl overflow-hidden border border-white/10 animate-pulse">
+      <div className="bg-white/5" style={{ aspectRatio: "16/9" }} />
       <div className="p-5 space-y-3">
-        <div className="h-4 bg-gray-200 rounded w-3/4" />
-        <div className="h-3 bg-gray-100 rounded w-1/2" />
-        <div className="h-6 bg-gray-200 rounded w-1/3 mt-4" />
-        <div className="h-10 bg-gray-100 rounded-xl mt-4" />
+        <div className="h-4 bg-white/10 rounded w-3/4" />
+        <div className="h-3 bg-white/5 rounded w-1/2" />
+        <div className="h-6 bg-white/10 rounded w-1/3 mt-4" />
+        <div className="h-10 bg-white/5 rounded-xl mt-4" />
       </div>
     </div>
   );
@@ -132,10 +133,17 @@ function CardSkeleton() {
 // ─── Main Component ───────────────────────────────────────────────────────────
 export default function DynamicVehicleGrid({
   asCarousel = false,
-  categoryId = null,
+  options = {},
 }: {
   asCarousel?: boolean;
-  categoryId?: string | null;
+  options?: {
+    categoryId?: string | null;
+    searchQuery?: string;
+    minPrice?: number;
+    maxPrice?: number;
+    year?: string;
+    bodyStyle?: string;
+  };
 }) {
   const [vehicles, setVehicles] = useState<VehicleCard[]>([]);
   const [loading, setLoading] = useState(true);
@@ -150,15 +158,41 @@ export default function DynamicVehicleGrid({
     async function fetchVehicles() {
       setLoading(true);
       let query = supabase.from("vehicles").select("*");
-      if (categoryId && categoryId !== "all") {
-        query = query.eq("category_id", categoryId);
+
+      // Apply Category Filter
+      if (options.categoryId && options.categoryId !== "all") {
+        query = query.eq("category_id", options.categoryId);
       }
+
+      // Apply Text Search (Title, Description, or Body Style)
+      if (options.searchQuery) {
+        query = query.or(`title.ilike.%${options.searchQuery}%,description.ilike.%${options.searchQuery}%,body_style.ilike.%${options.searchQuery}%`);
+      }
+
+      // Apply Price Range
+      if (options.minPrice !== undefined) {
+        query = query.gte("price", options.minPrice);
+      }
+      if (options.maxPrice !== undefined) {
+        query = query.lte("price", options.maxPrice);
+      }
+
+      // Apply Year
+      if (options.year) {
+        query = query.eq("year", parseInt(options.year));
+      }
+
+      // Apply Body Style
+      if (options.bodyStyle) {
+        query = query.eq("body_style", options.bodyStyle);
+      }
+
       const { data, error } = await query.order("created_at", { ascending: false });
       if (!error && data) setVehicles(data);
       setLoading(false);
     }
     fetchVehicles();
-  }, [supabase, categoryId]);
+  }, [supabase, options.categoryId, options.searchQuery, options.minPrice, options.maxPrice, options.year, options.bodyStyle]);
 
   // ── Carousel mode ──────────────────────────────────────────────────────────
   if (asCarousel) {
@@ -201,9 +235,9 @@ export default function DynamicVehicleGrid({
 
   if (vehicles.length === 0) {
     return (
-      <div className="col-span-full text-center py-20 bg-gray-50 rounded-2xl border border-gray-200">
-        <h3 className="text-xl font-bold text-gray-800">New Inventory Coming Soon</h3>
-        <p className="text-gray-500 mt-2">We are currently updating our fleet.</p>
+      <div className="col-span-full text-center py-20 bg-[#121416] rounded-2xl border border-white/10">
+        <h3 className="text-xl font-bold text-white">New Inventory Coming Soon</h3>
+        <p className="text-gray-400 mt-2">We are currently updating our fleet.</p>
       </div>
     );
   }

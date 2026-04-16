@@ -38,7 +38,7 @@ export const htmlContent = `<form action="/search" class="search-desktop w-form"
                         <div class="features-divider"></div>
                     </div>
                     <div class="service-card">
-                        <div class="service-cars-heading">You wwilll lloovveee ittt</div>
+                        <div class="service-cars-heading">Experience Excellence</div>
                         <p class="service-card-paragraph">
                             At our car shop, we are committed to providing our customers
                             with exceptional service and competitive pricing.<br />
