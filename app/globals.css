@@ -73,6 +73,69 @@ h1, h2, h3, h4, h5, h6, p, a,
 .min-h-screen.bg-gray-50  .text-gray-500  { color: #6b7280 !important; }
 .min-h-screen.bg-gray-50  .text-gray-400  { color: #9ca3af !important; }
 
+/* ── Admin & Login: button & semantic colored text fix ──────────────────────
+   Colored class names (red, green, amber, etc.) on buttons/badges/labels
+   must render their correct hue, not the forced-white foreground.
+   text-white on gold/dark buttons must also be preserved.
+   -------------------------------------------------------------------------- */
+
+/* Shared scope: both admin and login */
+.min-h-screen.bg-gray-100 .text-white,
+.min-h-screen.bg-gray-50  .text-white     { color: #ffffff !important; }
+
+/* Red */
+.min-h-screen.bg-gray-100 .text-red-700,
+.min-h-screen.bg-gray-50  .text-red-700   { color: #b91c1c !important; }
+.min-h-screen.bg-gray-100 .text-red-600,
+.min-h-screen.bg-gray-50  .text-red-600   { color: #dc2626 !important; }
+.min-h-screen.bg-gray-100 .text-red-500,
+.min-h-screen.bg-gray-50  .text-red-500   { color: #ef4444 !important; }
+.min-h-screen.bg-gray-100 .text-red-400,
+.min-h-screen.bg-gray-50  .text-red-400   { color: #f87171 !important; }
+/* hover:text-red-* — Tailwind generates these as attribute selectors */
+.min-h-screen.bg-gray-100 .hover\:text-red-700:hover,
+.min-h-screen.bg-gray-50  .hover\:text-red-700:hover { color: #b91c1c !important; }
+.min-h-screen.bg-gray-100 .hover\:text-red-600:hover,
+.min-h-screen.bg-gray-50  .hover\:text-red-600:hover { color: #dc2626 !important; }
+.min-h-screen.bg-gray-100 .hover\:text-white:hover,
+.min-h-screen.bg-gray-50  .hover\:text-white:hover   { color: #ffffff !important; }
+
+/* Emerald */
+.min-h-screen.bg-gray-100 .text-emerald-700,
+.min-h-screen.bg-gray-50  .text-emerald-700 { color: #047857 !important; }
+.min-h-screen.bg-gray-100 .text-emerald-300,
+.min-h-screen.bg-gray-50  .text-emerald-300 { color: #6ee7b7 !important; }
+.min-h-screen.bg-gray-100 .text-emerald-200,
+.min-h-screen.bg-gray-50  .text-emerald-200 { color: #a7f3d0 !important; }
+
+/* Green */
+.min-h-screen.bg-gray-100 .text-green-700,
+.min-h-screen.bg-gray-50  .text-green-700  { color: #15803d !important; }
+.min-h-screen.bg-gray-100 .text-green-600,
+.min-h-screen.bg-gray-50  .text-green-600  { color: #16a34a !important; }
+
+/* Amber */
+.min-h-screen.bg-gray-100 .text-amber-700,
+.min-h-screen.bg-gray-50  .text-amber-700  { color: #b45309 !important; }
+
+/* Rose */
+.min-h-screen.bg-gray-100 .text-rose-600,
+.min-h-screen.bg-gray-50  .text-rose-600   { color: #e11d48 !important; }
+
+/* Purple */
+.min-h-screen.bg-gray-100 .text-purple-700,
+.min-h-screen.bg-gray-50  .text-purple-700 { color: #7e22ce !important; }
+
+/* Indigo */
+.min-h-screen.bg-gray-100 .text-indigo-600,
+.min-h-screen.bg-gray-50  .text-indigo-600 { color: #4f46e5 !important; }
+.min-h-screen.bg-gray-100 .text-indigo-400,
+.min-h-screen.bg-gray-50  .text-indigo-400 { color: #818cf8 !important; }
+
+/* Gold brand color (used on edit button & nav accents) */
+.min-h-screen.bg-gray-100 .text-\[\#d4af37\],
+.min-h-screen.bg-gray-50  .text-\[\#d4af37\] { color: #d4af37 !important; }
+
 /* Force dark backgrounds on components */
 .service-card, 
 .home-testimonials-slide, 
