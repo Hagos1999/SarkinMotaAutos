@@ -88,8 +88,8 @@ function VehicleCardUI({ car, addItem }: { car: VehicleCard; addItem: (item: any
         <div className="mt-4 flex gap-2">
           <Link
             href={`/product/${car.slug}`}
-            className="flex-1 text-center py-2.5 rounded-xl text-sm font-semibold hover:opacity-90 transition-all shadow-sm"
-            style={{ backgroundColor: "#d4af37", color: "#000 !important" }}
+            className="flex-1 text-center py-2.5 rounded-xl text-sm font-semibold hover:opacity-90 transition-all shadow-sm text-black"
+            style={{ backgroundColor: "#d4af37" }}
           >
             View Details
           </Link>

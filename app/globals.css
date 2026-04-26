@@ -151,6 +151,42 @@ h1, h2, h3, h4, h5, h6, p, a,
   border-radius: 12px;
 }
 
+/* ── Home page card text fix ────────────────────────────────────────────────
+   The Webflow external stylesheet gives some child areas (price section, title
+   area) a white background. Override those back to dark and ensure all card
+   text is the light foreground colour so it is readable.
+   -------------------------------------------------------------------------- */
+
+/* Force any white sub-section inside a dark Webflow card to be dark too */
+.main-shop-list-item > div,
+.main-shop-list-item > div > div,
+.car-item-style > div,
+.collection-item-home > div {
+  background-color: transparent !important;
+}
+
+/* Vehicle name links on both list & featured cards */
+.shop-item-link,
+.car-title                    { color: var(--foreground) !important; }
+.shop-item-link:hover,
+.car-title:hover              { color: #d4af37 !important; }
+
+/* Price & MSRP text inside dark cards */
+.shop-item-price,
+.shop-item-price.home         { color: var(--foreground) !important; }
+
+/* Info chips (Year / Body Style / Mileage labels inside car-info-small) */
+.car-info-small,
+.car-info-small > div,
+.car-info-wrapper,
+.car-info-wrapper > div       { color: var(--foreground) !important; }
+
+/* Description paragraph inside featured car cards */
+.flex-vertical-align-start p  { color: rgba(245, 245, 245, 0.75) !important; }
+
+/* Divider between price & MSRP */
+.divider-element               { color: rgba(245,245,245,0.3) !important; }
+
 /* Fix for testimonials specifically */
 .home-testimonials-slide, .home-testimonials-card {
   padding: 2rem;

@@ -44,7 +44,7 @@ export default async function AdminDashboard() {
         </Link>
         <Link
           href="/admin/vehicles/new"
-          className="bg-[#d4af37]-black px-4 py-2 rounded-lg font-medium hover:bg-[#b8860b] flex items-center gap-2 text-sm transition-all shadow-sm"
+          className="bg-[#d4af37] text-black px-4 py-2 rounded-lg font-medium hover:bg-[#b8860b] hover:text-white flex items-center gap-2 text-sm transition-all shadow-sm"
         >
           <PlusCircle className="w-4 h-4" />
           Add Vehicle
