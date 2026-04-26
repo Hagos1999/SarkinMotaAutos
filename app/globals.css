@@ -18,6 +18,61 @@ h1, h2, h3, h4, h5, h6, p, a,
   color: var(--foreground) !important;
 }
 
+/* ── Admin & Login: white-background text fix ──────────────────────────────
+   The global dark theme forces #F5F5F5 text everywhere, which is invisible
+   on the admin panel's white cards and the login form. These overrides
+   restore legible dark text on any white/light surface inside admin/login.
+   -------------------------------------------------------------------------- */
+
+/* Login page */
+.min-h-screen.bg-gray-50 h1,
+.min-h-screen.bg-gray-50 h2,
+.min-h-screen.bg-gray-50 h3,
+.min-h-screen.bg-gray-50 p,
+.min-h-screen.bg-gray-50 label,
+.min-h-screen.bg-gray-50 a,
+.min-h-screen.bg-gray-50 span {
+  color: #111827 !important;
+}
+
+/* Admin sidebar (white bg) */
+.min-h-screen.bg-gray-100 aside h1,
+.min-h-screen.bg-gray-100 aside h2,
+.min-h-screen.bg-gray-100 aside p,
+.min-h-screen.bg-gray-100 aside span,
+.min-h-screen.bg-gray-100 aside a,
+.min-h-screen.bg-gray-100 aside button {
+  color: #374151 !important;
+}
+
+/* Admin main content area – all white cards */
+.min-h-screen.bg-gray-100 main h1,
+.min-h-screen.bg-gray-100 main h2,
+.min-h-screen.bg-gray-100 main h3,
+.min-h-screen.bg-gray-100 main p,
+.min-h-screen.bg-gray-100 main span,
+.min-h-screen.bg-gray-100 main label,
+.min-h-screen.bg-gray-100 main th,
+.min-h-screen.bg-gray-100 main td,
+.min-h-screen.bg-gray-100 main div {
+  color: inherit !important; /* let Tailwind text-gray-* classes work */
+}
+
+/* Explicit Tailwind class reinforcement inside admin – white card text */
+.min-h-screen.bg-gray-100 .text-gray-900  { color: #111827 !important; }
+.min-h-screen.bg-gray-100 .text-gray-800  { color: #1f2937 !important; }
+.min-h-screen.bg-gray-100 .text-gray-700  { color: #374151 !important; }
+.min-h-screen.bg-gray-100 .text-gray-600  { color: #4b5563 !important; }
+.min-h-screen.bg-gray-100 .text-gray-500  { color: #6b7280 !important; }
+.min-h-screen.bg-gray-100 .text-gray-400  { color: #9ca3af !important; }
+
+/* Login page Tailwind class reinforcement */
+.min-h-screen.bg-gray-50  .text-gray-900  { color: #111827 !important; }
+.min-h-screen.bg-gray-50  .text-gray-700  { color: #374151 !important; }
+.min-h-screen.bg-gray-50  .text-gray-600  { color: #4b5563 !important; }
+.min-h-screen.bg-gray-50  .text-gray-500  { color: #6b7280 !important; }
+.min-h-screen.bg-gray-50  .text-gray-400  { color: #9ca3af !important; }
+
 /* Force dark backgrounds on components */
 .service-card, 
 .home-testimonials-slide, 
